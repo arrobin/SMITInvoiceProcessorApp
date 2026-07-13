@@ -1,0 +1,11 @@
+ConnectionString=Data Source=(local);Initial Catalog=STRATA;Min Pool Size=5;Max Pool Size=60;Connect Timeout=30;Trusted_Connection=True;
+
+InvoiceScanFolder=D:\HostingSpaces\AITSCL-SRES\StrataManagedIT\SRES_Common\
+
+InvoiceScanFolderExFiles=D:\HostingSpaces\AITSCL-SRES\StrataManagedIT\SRES_Common\ExFiles\
+
+InvoiceDropFolder=D:\HostingSpaces\AITSCL-SRES\StrataManagedIT\SRES_Uploads\
+
+PDFDropFolder=D:\HostingSpaces\AITSCL-SRES\StrataManagedIT\PDF_Print_Queue\
+
+SpecialPDFDropFolder=D:\HostingSpaces\AITSCL-SRES\StrataManagedIT\Special_PDF_Drop_Folder\

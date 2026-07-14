@@ -40,7 +40,7 @@ namespace SchedulerJob
                 // =========================
                 // MAIN JOB
                 // =========================
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        ProcessFiles();
+                ProcessFiles();
 
                 //Logger.Info("Job Finished Successfully");
             }
@@ -153,7 +153,10 @@ namespace SchedulerJob
                         {
                             foreach (var transaction in transactionList)
                             {
-                                shouldTransferToSpecialFolder = fileTransferRuleTexts.Any(rule => transaction.RefNumber.ToLower().Contains(rule.ToLower()));
+                                shouldTransferToSpecialFolder = fileTransferRuleTexts.Any(rule =>
+                                                                                                 (transaction.RefNumber?.IndexOf(rule, StringComparison.OrdinalIgnoreCase) >= 0) ||
+                                                                                                 (transaction.CRItem?.IndexOf(rule, StringComparison.OrdinalIgnoreCase) >= 0)
+                                                                                          );
 
                                 DbResult dbResult = new DbResult();
                                 log.Status = "UPLOADED | In Print Queue";
@@ -365,7 +368,7 @@ namespace SchedulerJob
             }
             return "N/A";
         }
-        private static int SaveSMITFileUploadLog(SMITFileUploadLog log,string connectionString, int maxRetries = 3, int delayMs = 500)
+        private static int SaveSMITFileUploadLog(SMITFileUploadLog log, string connectionString, int maxRetries = 3, int delayMs = 500)
         {
             string query = @"
                             INSERT INTO SMITFileUploadLog
